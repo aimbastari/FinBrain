@@ -31,7 +31,7 @@ class Splash extends Component {
 
                 </View>
                 <View style={[styles.loginStyle, styles.border('#95afba')]}>
-                    <Button style={[styles.loginTextStyle]}>
+                    <Button style={[styles.loginTextStyle]} onPress={()=>console.log("you pressed me")} >
                         LOGIN
                     </Button>
 
