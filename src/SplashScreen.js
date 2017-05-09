@@ -3,8 +3,14 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Button from './components/Button';
 
-class Splash extends Component {
+
+class SplashScreen extends Component {
+  static navigationOptions = {
+    title: 'Greetings'
+  };  
     render() {
+        const { navigate } = this.props.navigation;
+        
         return (
             <View style={[styles.containerStyle]}>
                 <View style={[styles.logoStyle]}>
@@ -90,4 +96,4 @@ const styles = {
 
 
 
-export default Splash;
+export default SplashScreen;
