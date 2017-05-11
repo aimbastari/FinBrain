@@ -6,7 +6,7 @@ import Button from './components/Button';
 
 class SplashScreen extends Component {
   static navigationOptions = {
-    title: 'Greetings'
+    title: 'Welcome to FinBrain'
   };  
     render() {
         const { navigate } = this.props.navigation;
@@ -37,7 +37,7 @@ class SplashScreen extends Component {
 
                 </View>
                 <View style={[styles.loginStyle, styles.border('#95afba')]}>
-                    <Button style={[styles.loginTextStyle]} onPress={()=>console.log("you pressed me")} >
+                    <Button style={[styles.loginTextStyle]} onPress={() => navigate('Login')} >
                         LOGIN
                     </Button>
 

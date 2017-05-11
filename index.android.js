@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 
 import { StackNavigator } from 'react-navigation';
+import ChatScreen from './src/ChatScreen';
+import SplashScreen from './src/SplashScreen';
+import LoginScreen from './src/LoginScreen';
 
 
 class HomeScreen extends React.Component {
@@ -21,28 +24,23 @@ class HomeScreen extends React.Component {
           onPress={() => navigate('Chat')}
           title="Chat with Lucy"
         />
+        <Button
+          onPress={() => navigate('Splash')}
+          title="Welcome to FinBrain"
+        />
+        
       </View>
     );
   }
 }
 
-class ChatScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Chat with Lucy'
-  };
-  render() {
-    return (
-      <View>
-        <Text>Chat with Lucy</Text>
-      </View>
-    );
-  }
-}
 
 
 const SimpleApp = StackNavigator({
   Home: { screen: HomeScreen },
-  Chat: { screen: ChatScreen }
+  Chat: { screen: ChatScreen },
+  Splash: { screen: SplashScreen },
+  Login: { screen: LoginScreen }
 });
 
 
