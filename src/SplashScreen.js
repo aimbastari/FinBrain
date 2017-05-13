@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Button from './components/Button';
-
+import MainScreenNavigator from './PersonalScreen';
 
 class SplashScreen extends Component {
   static navigationOptions = {
@@ -10,7 +10,7 @@ class SplashScreen extends Component {
   };  
     render() {
         const { navigate } = this.props.navigation;
-        
+                
         return (
             <View style={[styles.containerStyle]}>
                 <View style={[styles.logoStyle]}>
@@ -22,18 +22,12 @@ class SplashScreen extends Component {
                         Let us do all the thinking
                     </Text> 
 
-
                 </View>
 
                 <View style={[styles.captionStyle]}>
-                    <Text style={[styles.captionTextStyle]}>
-
-                    </Text> 
-
-                    <Text style={[styles.captionTextStyle]}>
-                        SWIPE TO CONTINUE
-                    </Text> 
-
+                    <Button style={[styles.loginTextStyle]} onPress={() => navigate('Main')} >
+                        Click here to get started!
+                    </Button>
 
                 </View>
                 <View style={[styles.loginStyle, styles.border('#95afba')]}>

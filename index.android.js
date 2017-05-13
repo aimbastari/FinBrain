@@ -9,13 +9,13 @@ import {
 import { StackNavigator } from 'react-navigation';
 import SplashScreen from './src/SplashScreen';
 import LoginScreen from './src/LoginScreen';
-import PersonalTabNavigator from './src/PersonalScreen';
+import MainScreenNavigator from './src/PersonalScreen';
 
 
 const App = StackNavigator({
   Splash: { screen: SplashScreen },
   Login: { screen: LoginScreen },
-  Personal: {screen: PersonalTabNavigator}
+  Main: {screen: MainScreenNavigator}
 });
 
 
