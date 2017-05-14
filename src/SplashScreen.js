@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import Button from './components/Button';
-import MainScreenNavigator from './PersonalScreen';
+import * as storage from './utils/StorageMethods';
 
 class SplashScreen extends Component {
   static navigationOptions = {
@@ -25,8 +25,11 @@ class SplashScreen extends Component {
                 </View>
 
                 <View style={[styles.captionStyle]}>
-                    <Button style={[styles.loginTextStyle]} onPress={() => navigate('Main')} >
+                    <Button style={[styles.loginTextStyle]} onPress={() => navigate('Profile')} >
                         Click here to get started!
+                    </Button>
+                    <Button  onPress={() => storage.resetAsyncStorage()} >
+                        reset data
                     </Button>
 
                 </View>

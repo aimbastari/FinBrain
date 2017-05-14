@@ -1,54 +1,49 @@
 import React from 'react';
-import { Text, Slider, View, StyleSheet } from 'react-native';
-import { saveAge, getAge } from '../utils/StorageMethods';
-import * as storageMehtods from '../utils/StorageMethods';
+import { Text, Slider, View, StyleSheet, Picker } from 'react-native';
+import * as storage from '../utils/StorageMethods';
 
+class RiskScreen extends React.Component {
+  static defaultProps = {risk: "riskAverse"}
 
-class AgeScreen extends React.Component {
-  static defaultProps = {
-    age:25
+  state = {risk: this.props.risk};    
+
+  async componentWillMount() {
+    //Get data from storage
+    const risk = await storage.getRisk();
+
+    //Update state
+    this.setState({risk});
   }
-
-  state = {age: this.props.age};    
-
-  async componentWillMount(){
-    const age = await storageMehtods.getAge();
-    this.setState({age: age});
-
-  }
-
-  componentWillUnmount() {
-    console.log("logging age: " + this.state.age)
-  }
-
 
   render() {
+
+
     return (
       <View style={styles.container}>
 
         <View style={styles.containerGrouping} >
 
           <Text style={styles.textQuestion}>
-              WHAT IS YOUR AGE:
+              How Risk Averse are you?:
             </Text>
             <Text style={styles.textAge}>
-              {this.state.age }
+              {this.state.risk}
             </Text>
 
           <Slider
               style={styles.slider} 
               {...this.props}
-              maximumValue = {100}
-              minimumValue = {1}
-              step = {5}
-              value = {this.state.age > 0 ? this.state.age : 25}
-
-              onValueChange={(age)=> this.setState({age})}
-              onSlidingComplete={(age)=> storageMehtods.saveAge(age)}
+              maximumValue = {10}
+              minimumValue = {0}
+              step = {1}
+              value = {this.state.risk > 0 ? this.state.risk : 5}
               
+              onValueChange={(risk)=> this.setState({risk})}
+              onSlidingComplete={(risk)=> storage.saveRisk(risk)}
           />
 
         </View>
+
 
       </View>
   
@@ -99,5 +94,5 @@ var styles = StyleSheet.create({
 })
 
 
-export default AgeScreen;
+export default RiskScreen;
 
