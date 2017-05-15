@@ -1,49 +1,124 @@
 import React from 'react';
 import { Text, Slider, View, StyleSheet, TouchableOpacity } from 'react-native';
-
+import firebase from 'firebase';
 
 import * as storage from '../utils/StorageMethods';
-
+import Input from '../components/Input';
 
 
 class ResultScreen extends React.Component {
-  static defaultProps = {type: "salaried", amount: 10
-  }
 
-  state = {type: this.props.type, amount: this.props.amount};    
+  state = {email: '', password: '', error: '', loggedIn: false};    
 
   async componentWillMount() {
     //Get data from storage
-    const employment = await storage.getEmployment();
 
     //Update state
-    this.setState(employment);
   }
 
-  render() {
 
-    const  handleSubmit = async () => {
-      //get the profile from async storage
-      const profile = await storage.getAsyncStorage();
 
-      //Log for debugging
-      console.log(profile);      
 
-      //send the profile to fin brain and wait for allocation
+  handleSubmit = async () => {
+    //fetch email and password. 
+    const email = this.state.email;
+    const password = this.state.password;
+
+    //call firebase api to get authorized
+    
+    //if not a user -create an account
+    //firebase.auth();
+    
+    //if fails send error message
+
+    try{
+      const user = await firebase.auth().signInWithEmailAndPassword(email, password);
+      this.setState({loggedIn: true})
+      
+    }catch(error){
+      //Try to create a new user
+      try {
+        const user = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        //User created successfully
+        
+        //Navigate to new screen
+        this.setState({loggedIn: true})
+
+
+        //Call Cloud with function to obtain allocation
+
+
+      } catch (error) {
+        this.setState({error: "Sign In Failed!"}) 
+        this.setState({loggedIn: false})
+               
+      }
 
 
     }
 
 
-    return (
-      <View style={styles.container}>
+  }
 
+
+
+  render() {
+
+    const renderLogIn = () => {
+      return(
+
+        <View style={{flex: 1}}>
+            <Input 
+              placeholder="youremail@gmail.com" 
+              label="email" 
+              value={this.state.email} 
+              onChangeText={(email)=>(this.setState({email}))}
+            />
+
+            <Input
+              secureTextEntry
+              label="password" 
+              value={this.state.password} 
+              onChangeText={(password) => (this.setState({password}))}
+            />
+            <Text style={styles.error}>
+              {this.state.error}
+            </Text>
+            <TouchableOpacity onPress={this.handleSubmit}>
+            <Text style={styles.submit}>
+              GET ALLOCATION 
+            </Text>
+          </TouchableOpacity>     
+        </View>
+
+      )
+    }
+
+    const renderAllocation = () => {
+      return(
+        <View>
+          <Text>
+            Fin Brains says:  Your optimal allocation is:
+            100 Bond ETF
+          </Text>
+        </View>
+
+      )
+    }
+
+    return (
+    
+      <View style={styles.container}>
+        {this.state.loggedIn ?  renderAllocation() : renderLogIn()}
+
+
+{/* 
         <View style={styles.containerGrouping} >
 
           <Text style={styles.textQuestion}>
-            Submit your Profile to FIN BRAIN
+            Enter email and password and Submit your Profile
           </Text>
-            
+   
           <TouchableOpacity onPress={handleSubmit}>
             <Text style={styles.textQuestion}>
               FIN BRAIN
@@ -60,7 +135,7 @@ class ResultScreen extends React.Component {
 
 
         </View>
-
+*/}
 
       </View>
   
@@ -106,7 +181,23 @@ var styles = StyleSheet.create({
     margin: 10,
     borderWidth: 0
     
+  },
+  error: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+
+  }, 
+  submit: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'green',
+    backgroundColor: 'grey'
   }
+
+
+
+
 
 })
 

@@ -1,10 +1,25 @@
 
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
+import firebase from 'firebase';
 import Button from './components/Button';
 import * as storage from './utils/StorageMethods';
 
 class SplashScreen extends Component {
+
+   componentWillMount() {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAVu5t24SMzLXkmC93YnEgwHgaYVsRuZcI",
+        authDomain: "finbrain-4ac09.firebaseapp.com",
+        databaseURL: "https://finbrain-4ac09.firebaseio.com",
+        projectId: "finbrain-4ac09",
+        storageBucket: "finbrain-4ac09.appspot.com",
+        messagingSenderId: "929700741403"
+    };
+    firebase.initializeApp(config);
+   } 
+
   static navigationOptions = {
     title: 'Welcome to FinBrain'
   };  
