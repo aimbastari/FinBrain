@@ -17,7 +17,7 @@ const styles = {
         flex:1,
         alignSelf: "stretch",
         justifyContent: 'center',
-        backgroundColor: '#95afba',
+        backgroundColor: '#bc3553',
         borderWidth: 1,
         borderRadius: 5,
         borderColor: "#222",

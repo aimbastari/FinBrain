@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import firebase from 'firebase';
 import Button from './components/Button';
 import * as storage from './utils/StorageMethods';
@@ -39,16 +39,29 @@ class HomeScreen extends Component {
 
                 </View>
 
-                <View style={[styles.captionStyle]}>
+                <View style={[styles.getStartedStyle]}>
+
+
+        <TouchableOpacity style={styles.buttonStyle} onPress={() => navigate('Profile')} >
+                        <Text style={{fontSize: 20, alignSelf: 'center', color:'white'}}>
+                            Click the brain to get started!
+                        </Text>
+            
+                    <Image source={require('./finbrainlogo.png')} style={{height:250, width:300, opacity: 1}}>
+                    </Image>
+
+        </TouchableOpacity>
+
+
                     <Button style={[styles.loginTextStyle]} onPress={() => navigate('Profile')} >
-                        Click here to get started!
                     </Button>
+{/*                     
                     <Button  onPress={() => storage.resetAsyncStorage()} >
                         reset data
                     </Button>
-
+*/}
                 </View>
-                <View style={[styles.loginStyle, styles.border('#95afba')]}>
+                <View style={[styles.loginStyle]}>
                     <Button style={[styles.loginTextStyle]} onPress={() => navigate('Login')} >
                         LOGIN
                     </Button>
@@ -65,7 +78,7 @@ const styles = {
     containerStyle : {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#21897e',
+        backgroundColor: '#1c590a',
         justifyContent: 'center'
     },
     logoStyle : {
@@ -76,12 +89,15 @@ const styles = {
     logoTextStyle : {
         fontSize: 50,
         fontWeight: 'bold',
-        color: '#FFF'        
+        color: '#53bc35'        
     },
-    captionStyle: {
+    getStartedStyle: {
         justifyContent: 'flex-start',
         alignItems: 'center',
-        flex: 3,
+        flex: 6,
+        backgroundColor: '#1c590a',
+        paddingLeft: 20,
+        paddingRight: 20        
     },
     captionTextStyle: {
         fontSize: 25,
@@ -94,11 +110,14 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         flex: 2,
+        padding: 20,
+        
     },
     loginTextStyle: {
-        fontSize: 30,
+        fontSize: 20,
         fontWeight: 'normal',
-        color: '#FFF',
+        color: '#bc3553',
+        backgroundColor: '#bc3553'                 
     },
 
 
