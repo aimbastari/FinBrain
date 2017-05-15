@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import Button from './components/Button';
 import * as storage from './utils/StorageMethods';
 
-class SplashScreen extends Component {
+class HomeScreen extends Component {
 
    componentWillMount() {
     // Initialize Firebase
@@ -108,4 +108,4 @@ const styles = {
 
 
 
-export default SplashScreen;
+export default HomeScreen;

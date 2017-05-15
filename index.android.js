@@ -5,15 +5,15 @@ import {
   View,
   Button
 } from 'react-native';
-
 import { StackNavigator } from 'react-navigation';
-import SplashScreen from './src/SplashScreen';
+
+import HomeScreen from './src/HomeScreen';
 import LoginScreen from './src/LoginScreen';
 import ProfileScreenNavigator from './src/ProfileScreenNavigator';
 
 
 const App = StackNavigator({
-  Splash: { screen: SplashScreen },
+  Home: { screen: HomeScreen },
   Login: { screen: LoginScreen },
   Profile: {screen: ProfileScreenNavigator}
 });
