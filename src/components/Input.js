@@ -21,7 +21,7 @@ export default Input = ({label, value, onChangeText, placeholder, secureTextEntr
 
 const styles = {
     inputStyle: {
-        color: '#000',
+        color: '#FFF',
         paddingRight: 5,
         paddingLeft: 5,
         fontSize: 18,
@@ -30,6 +30,7 @@ const styles = {
     },
     labelStyle: {
         fontSize: 18,
+        fontWeight: '900',        
         paddingLeft: 20,
         flex:1,
         color: '#53bc35'
